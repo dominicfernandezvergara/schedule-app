@@ -1,48 +1,38 @@
-import React from "react";
-import moment from "moment";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import styles from "./schedule.module.css";
+import {
+  getDataCurrentMonth,
+  prevMonthAction,
+} from "../../redux/scheduleStore";
+import GetDaysArrayByMonth from "./schedule-data";
 
 const Schedule = () => {
-  const date = moment().format("DD");
-  const currentDate = date - 1;
-  const monthDays = getDaysArrayByMonth();
+  const monthDays = GetDaysArrayByMonth();
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.schedule.daysCurrentMonth);
+  const monthName = useSelector((state) => state.schedule.currentMonthName);
 
-  function getDaysArrayByMonth() {
-    var daysInMonth = moment().daysInMonth();
-    console.log(`daysInMonth`, daysInMonth);
-    const arrDays = [];
+  console.log(`monthDays`, monthDays);
 
-    for (let i = 0; i < daysInMonth; i++) {
-      const current = moment().date(i + 1);
-      arrDays.push({
-        id: i,
-        day: current.format("DD"),
-        weekDay: current.format("dddd"),
-        active: i === currentDate,
-      });
-    }
-    console.log(`arrDays`, arrDays);
-    const firstDayOfMonth = arrDays[0];
-    const firstWeekDay = firstDayOfMonth.weekDay;
-    console.log(`firstWeekDay`, firstWeekDay);
-    if (firstWeekDay === "Wednesday") {
-      arrDays.unshift(
-        { day: 0, weekDay: "Monday", active: false },
-        { day: 0, weekDay: "Tuesday", active: false }
-      );
-    }
-
-    return arrDays;
-  }
-
+  useEffect(() => {
+    dispatch(getDataCurrentMonth(monthDays));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const prevMonth = () => {
+    dispatch(prevMonthAction());
+  };
+  const nextMonth = () => {
+    // dispatch(nextMonthAction());
+  };
   return (
     <div className={styles.containerSchedule}>
       <div className={styles.wrapperMonthYear}>
         <div className={styles.wrapperMonthSwitch}>
-          <button>+</button>
-          <div className={styles.month}>Month</div>
-          <button>-</button>
+          <button onClick={prevMonth}>-</button>
+          <div className={styles.month}>{monthName}</div>
+          <button onClick={nextMonth}>+</button>
         </div>
         <div className={styles.year}>Year</div>
       </div>
@@ -56,7 +46,7 @@ const Schedule = () => {
         <div className={styles.weekDay}>SUN</div>
       </div>
       <div className={styles.containerDaysOfMonth}>
-        {monthDays.map((item, index) => {
+        {data.map((item, index) => {
           return (
             <div key={index} className={styles.day}>
               {item.day}
