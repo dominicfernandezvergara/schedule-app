@@ -1,0 +1,25 @@
+.containerSchedule {
+  background: aliceblue;
+  margin: 10px;
+  padding: 10px;
+}
+.wrapperMonthYear {
+  display: flex;
+}
+.wrapperMonthSwitch {
+  display: flex;
+}
+.weekDays {
+  display: flex;
+}
+.weekDay {
+  flex: 1;
+}
+.containerDaysOfMonth {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.day {
+  flex: 14%;
+}

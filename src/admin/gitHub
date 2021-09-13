@@ -1,0 +1,72 @@
+How to Update gitHub
+
+gd (too see changes before commit)
+
+1.- git status
+gst   (to see status app)
+2.- git add .
+ga .(shortcut)
+3.- git commit -m "feat: updated the header and footer"
+gcmsg "feat: updated the header and footer" (shortcut)
+4.- git push
+5.- Create a pull request
+click on command(teclado) and then on the link they give us after doing git push
+6.- git pull in Dev para actualizar dev, since the changes were made on the internet and not on the computer.
+7.- create a new branch and continue working
+
+
+two ways to view commit detail
+glog (to see commit detail )
+glg (to see commit detail )
+____________________________
+
+gb (to see all the branches that exist)
+____________________________
+
+to actualice (do it always before to create a branch or start to work, to work with the actualiced master)
+
+git pull
+____________________________
+How create a new branch
+
+git checkout -b new-branch-name (to create a new branch)
+gco -b ... (shortcut)
+____________________________
+
+How change to other branch
+
+git checkout new-branch-name
+gco  new-branch-name (shortcut)
+
+
+Semantic Commit Messages(name to commit and name new branch)
+https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716
+
+____________________________
+
+How to delete a Branch merged
+
+gb -d branch-name
+
+
+How to delate a Branch not merged
+
+gb -D branche-name
+____________________________
+change name branch
+
+git branch -m old-name new-name
+gb -m old-name new-name
+
+____________________________
+to save change before commit if i want to move to other branch
+
+git stash (to save)
+ git stash show (to view)
+ git stash pop (to get what I saved)
+
+____________________________
+ git Fetch (to know if the branch is up date)
+
+ https://sheltered-meadow-59401.herokuapp.com/
+ https://sheltered-meadow-59401.herokuapp.com/home
