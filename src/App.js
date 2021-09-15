@@ -1,18 +1,24 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./pages/home";
+import AddNewEvent from "./pages/add-new-event";
 
 function App() {
   return (
     <div className="container-app">
       <Router>
-        <Route path="*">
-          <Home />
-        </Route>
-        <Route path="/home">
-          <Home />
-        </Route>
+        <Switch>
+          <Route path="/home">
+            <Home />
+          </Route>
+          <Route path="/add-new-task">
+            <AddNewEvent />
+          </Route>
+          <Route path="/*">
+            <Home />
+          </Route>
+        </Switch>
       </Router>
     </div>
   );
