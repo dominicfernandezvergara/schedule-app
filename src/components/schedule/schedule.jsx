@@ -2,8 +2,18 @@ import React, { useState } from "react";
 import moment from "moment";
 
 import styles from "./schedule.module.css";
+import Modal from "../modal";
+import ModalEventsOfTheDay from "../modal/modal-events-of-the-day";
 
 const Schedule = () => {
+  const [modalState, setModalState] = useState(false);
+  const [modalCurrentDateInfo, setmodalCurrentDateInfo] = useState({
+    numberDay: "",
+    month: "",
+    weekDay: "",
+    year: "",
+  });
+
   const [monthNumber, setMonthNumber] = useState(0);
   const monthDays = getDaysArrayByMonth(monthNumber);
   const day = monthDays[10];
@@ -11,12 +21,10 @@ const Schedule = () => {
   const currentYear = day.year;
 
   function getDaysArrayByMonth(monthNumber) {
-    console.log(`monthNumberInFunction`, monthNumber);
     const date = moment().format("DD");
     const currentDate = date - 1;
 
     var daysInMonth = moment().subtract(monthNumber, "month").daysInMonth();
-    console.log(`daysInMonth`, daysInMonth);
     const arrDays = [];
 
     for (let i = 0; i < daysInMonth; i++) {
@@ -137,40 +145,70 @@ const Schedule = () => {
   const nextMonth = () => {
     setMonthNumber(monthNumber - 1);
   };
+  const openModal = (numberDay, month, weekDay, year) => {
+    const date = {
+      numberDay,
+      month,
+      weekDay,
+      year,
+    };
+    setmodalCurrentDateInfo(date);
+    setModalState(true);
+  };
 
   return (
-    <div className={styles.containerSchedule}>
-      <div className={styles.wrapperMonthYear}>
-        <div className={styles.wrapperMonthSwitch}>
-          <button onClick={prevMonth}>-</button>
-          <div className={styles.month}>{currentMonth}</div>
-          <button onClick={nextMonth}>+</button>
+    <React.Fragment>
+      <div>
+        <div className={styles.wrapperMonthYear}>
+          <div className={styles.wrapperMonthSwitch}>
+            <button onClick={prevMonth}>-</button>
+            <div className={styles.month}>{currentMonth}</div>
+            <button onClick={nextMonth}>+</button>
+          </div>
+          <div className={styles.year}>{currentYear}</div>
         </div>
-        <div className={styles.year}>{currentYear}</div>
-      </div>
-      <div className={styles.weekDays}>
-        <div className={styles.weekDay}>MON</div>
-        <div className={styles.weekDay}>TUE</div>
-        <div className={styles.weekDay}>WEN</div>
-        <div className={styles.weekDay}>THU</div>
-        <div className={styles.weekDay}>FRI</div>
-        <div className={styles.weekDay}>SAT</div>
-        <div className={styles.weekDay}>SUN</div>
-      </div>
-      <div className={styles.containerDaysOfMonth}>
-        {monthDays.map((item, index) => {
-          const numberDay = item.day;
+        <div className={styles.weekDays}>
+          <div className={styles.weekDay}>MON</div>
+          <div className={styles.weekDay}>TUE</div>
+          <div className={styles.weekDay}>WEN</div>
+          <div className={styles.weekDay}>THU</div>
+          <div className={styles.weekDay}>FRI</div>
+          <div className={styles.weekDay}>SAT</div>
+          <div className={styles.weekDay}>SUN</div>
+        </div>
+        <div className={styles.containerDaysOfMonth}>
+          {monthDays.map((item, index) => {
+            const numberDay = item.day;
+            const month = item.month;
+            const weekDay = item.weekDay;
+            const year = item.year;
 
-          return numberDay === "" ? (
-            <div key={index} className={styles.day}></div>
-          ) : (
-            <button key={index} className={styles.day}>
-              {item.day}
-            </button>
-          );
-        })}
+            return numberDay === "" ? (
+              <div key={index} className={styles.day}></div>
+            ) : (
+              <button
+                key={index}
+                className={styles.day}
+                onClick={() => openModal(numberDay, month, weekDay, year)}
+              >
+                {item.day}
+              </button>
+            );
+          })}
+        </div>
       </div>
-    </div>
+      <Modal
+        open={modalState}
+        close={() => setModalState(false)}
+        footer={false}
+        header={false}
+      >
+        <ModalEventsOfTheDay
+          date={modalCurrentDateInfo}
+          close={() => setModalState(false)}
+        />
+      </Modal>
+    </React.Fragment>
   );
 };
 
