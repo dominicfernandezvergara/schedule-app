@@ -45,88 +45,88 @@ const Schedule = () => {
     }
     if (firstWeekDay === "Wednesday") {
       arrDays.unshift(
-        { day: "", weekDay: "Monday", active: false },
-        { day: "", weekDay: "Tuesday", active: false }
+        { day: 0, weekDay: "Monday", active: false },
+        { day: 0, weekDay: "Tuesday", active: false }
       );
     }
     if (firstWeekDay === "Thursday") {
       arrDays.unshift(
-        { day: "", weekDay: "Monday", active: false },
-        { day: "", weekDay: "Tuesday", active: false },
-        { day: "", weekDay: "Wednesday", active: false }
+        { day: 0, weekDay: "Monday", active: false },
+        { day: 0, weekDay: "Tuesday", active: false },
+        { day: 0, weekDay: "Wednesday", active: false }
       );
     }
     if (firstWeekDay === "Friday") {
       arrDays.unshift(
-        { day: "", weekDay: "Monday", active: false },
-        { day: "", weekDay: "Tuesday", active: false },
-        { day: "", weekDay: "Wednesday", active: false },
-        { day: "", weekDay: "Thursday", active: false }
+        { day: 0, weekDay: "Monday", active: false },
+        { day: 0, weekDay: "Tuesday", active: false },
+        { day: 0, weekDay: "Wednesday", active: false },
+        { day: 0, weekDay: "Thursday", active: false }
       );
     }
     if (firstWeekDay === "Saturday") {
       arrDays.unshift(
-        { day: "", weekDay: "Monday", active: false },
-        { day: "", weekDay: "Tuesday", active: false },
-        { day: "", weekDay: "Wednesday", active: false },
-        { day: "", weekDay: "Thursday", active: false },
-        { day: "", weekDay: "Friday", active: false }
+        { day: 0, weekDay: "Monday", active: false },
+        { day: 0, weekDay: "Tuesday", active: false },
+        { day: 0, weekDay: "Wednesday", active: false },
+        { day: 0, weekDay: "Thursday", active: false },
+        { day: 0, weekDay: "Friday", active: false }
       );
     }
     if (firstWeekDay === "Sunday") {
       arrDays.unshift(
-        { day: "", weekDay: "Monday", active: false },
-        { day: "", weekDay: "Tuesday", active: false },
-        { day: "", weekDay: "Wednesday", active: false },
-        { day: "", weekDay: "Thursday", active: false },
-        { day: "", weekDay: "Friday", active: false },
-        { day: "", weekDay: "Saturday", active: false }
+        { day: 0, weekDay: "Monday", active: false },
+        { day: 0, weekDay: "Tuesday", active: false },
+        { day: 0, weekDay: "Wednesday", active: false },
+        { day: 0, weekDay: "Thursday", active: false },
+        { day: 0, weekDay: "Friday", active: false },
+        { day: 0, weekDay: "Saturday", active: false }
       );
     }
     //To add number in the ending of array and put order en the correct place to each day
     if (lastWeekDay === "Monday") {
       arrDays.push(
-        { day: "", weekDay: "Tuesday", active: false },
-        { day: "", weekDay: "Wednesday", active: false },
-        { day: "", weekDay: "Thursday", active: false },
-        { day: "", weekDay: "Friday", active: false },
-        { day: "", weekDay: "Saturday", active: false },
-        { day: "", weekDay: "Sunday", active: false }
+        { day: 0, weekDay: "Tuesday", active: false },
+        { day: 0, weekDay: "Wednesday", active: false },
+        { day: 0, weekDay: "Thursday", active: false },
+        { day: 0, weekDay: "Friday", active: false },
+        { day: 0, weekDay: "Saturday", active: false },
+        { day: 0, weekDay: "Sunday", active: false }
       );
     }
     if (lastWeekDay === "Tuesday") {
       arrDays.push(
-        { day: "", weekDay: "Wednesday", active: false },
-        { day: "", weekDay: "Thursday", active: false },
-        { day: "", weekDay: "Friday", active: false },
-        { day: "", weekDay: "Saturday", active: false },
-        { day: "", weekDay: "Sunday", active: false }
+        { day: 0, weekDay: "Wednesday", active: false },
+        { day: 0, weekDay: "Thursday", active: false },
+        { day: 0, weekDay: "Friday", active: false },
+        { day: 0, weekDay: "Saturday", active: false },
+        { day: 0, weekDay: "Sunday", active: false }
       );
     }
     if (lastWeekDay === "Wednesday") {
       arrDays.push(
-        { day: "", weekDay: "Thursday", active: false },
-        { day: "", weekDay: "Friday", active: false },
-        { day: "", weekDay: "Saturday", active: false },
-        { day: "", weekDay: "Sunday", active: false }
+        { day: 0, weekDay: "Thursday", active: false },
+        { day: 0, weekDay: "Friday", active: false },
+        { day: 0, weekDay: "Saturday", active: false },
+        { day: 0, weekDay: "Sunday", active: false }
       );
     }
     if (lastWeekDay === "Thursday") {
       arrDays.push(
-        { day: "", weekDay: "Friday", active: false },
-        { day: "", weekDay: "Saturday", active: false },
-        { day: "", weekDay: "Sunday", active: false }
+        { day: 0, weekDay: "Friday", active: false },
+        { day: 0, weekDay: "Saturday", active: false },
+        { day: 0, weekDay: "Sunday", active: false }
       );
     }
 
     if (lastWeekDay === "Friday") {
       arrDays.push(
-        { day: "", weekDay: "Saturday", active: false },
-        { day: "", weekDay: "Sunday", active: false }
+        { day: 0, weekDay: "Saturday", active: false },
+        { day: 0, weekDay: "Sunday", active: false }
       );
     }
     if (lastWeekDay === "Saturday") {
-      arrDays.push({ day: "", weekDay: "Sunday", active: false });
+      arrDays.push({ day: 0, weekDay: "Sunday", active: false });
     }
     return arrDays;
   }
@@ -159,14 +159,10 @@ const Schedule = () => {
       </div>
       <div className={styles.containerDaysOfMonth}>
         {monthDays.map((item, index) => {
-          const numberDay = item.day;
-
-          return numberDay === "" ? (
-            <div key={index} className={styles.day}></div>
-          ) : (
-            <button key={index} className={styles.day}>
+          return (
+            <div key={index} className={styles.day}>
               {item.day}
-            </button>
+            </div>
           );
         })}
       </div>
